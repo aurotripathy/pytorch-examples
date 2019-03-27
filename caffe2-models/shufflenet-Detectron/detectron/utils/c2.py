@@ -136,7 +136,7 @@ def CpuScope():
 
 def CudaDevice(gpu_id):
     """Create a Cuda device."""
-    return core.DeviceOption(caffe2_pb2.CUDA, gpu_id)
+    return core.DeviceOption(caffe2_pb2.HIP, gpu_id)
 
 
 def gauss_fill(std):
@@ -151,9 +151,9 @@ def const_fill(value):
 
 def get_nvidia_info():
     return (
-        get_nvidia_smi_output(),
-        workspace.GetCUDAVersion(),
-        workspace.GetCuDNNVersion(),
+#        get_nvidia_smi_output(),
+#        workspace.GetCUDAVersion(),
+#        workspace.GetCuDNNVersion(),
     )
 
 

@@ -27,7 +27,7 @@ import yaml
 # Default value of the CMake install prefix
 _CMAKE_INSTALL_PREFIX = '/usr/local'
 # Detectron ops lib
-_DETECTRON_OPS_LIB = 'libcaffe2_detectron_ops_gpu.so'
+_DETECTRON_OPS_LIB = 'libcaffe2_detectron_ops_hip.so'
 
 
 def get_runtime_dir():
