@@ -52,7 +52,7 @@ def process_in_parallel(
     processes = []
     subinds = np.array_split(range(total_range_size), cfg.NUM_GPUS)
     # Determine GPUs to use
-    cuda_visible_devices = os.environ.get('CUDA_VISIBLE_DEVICES')
+    cuda_visible_devices = os.environ.get('HIP_VISIBLE_DEVICES')
     if cuda_visible_devices:
         gpu_inds = map(int, cuda_visible_devices.split(','))
         assert -1 not in gpu_inds, \
@@ -63,7 +63,7 @@ def process_in_parallel(
     for i, gpu_ind in enumerate(gpu_inds):
         start = subinds[i][0]
         end = subinds[i][-1] + 1
-        subprocess_env['CUDA_VISIBLE_DEVICES'] = str(gpu_ind)
+        subprocess_env['HIP_VISIBLE_DEVICES'] = str(gpu_ind)
         cmd = '{binary} --range {start} {end} --cfg {cfg_file} NUM_GPUS 1 {opts}'
         cmd = cmd.format(
             binary=shlex_quote(binary),
